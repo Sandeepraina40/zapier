@@ -8,19 +8,19 @@ import { useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useRouter } from "next/navigation";
 
-export default function() {
+export default function () {
     const router = useRouter();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    return <div> 
+    return <div>
         <Appbar />
         <div className="flex justify-center">
             <div className="flex pt-8 max-w-4xl">
                 <div className="flex-1 pt-20 px-4">
                     <div className="font-semibold text-3xl pb-4">
-                    Join millions worldwide who automate their work using Zapier.
+                        Join millions worldwide who automate their work using Zapier.
                     </div>
                     <div className="pb-6 pt-4">
                         <CheckFeature label={"Easy setup, no coding required"} />
@@ -44,13 +44,18 @@ export default function() {
 
                     <div className="pt-4">
                         <PrimaryButton onClick={async () => {
+                            console.log("Button clicked!"); // This will help us know if the function is triggered
                             const res = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
                                 username: email,
                                 password,
                                 name
                             });
                             router.push("/login");
-                        }} size="big">Get started free</PrimaryButton>
+                        }} size="big">
+                            Get started free
+                        </PrimaryButton>
+
+
                     </div>
                 </div>
             </div>
